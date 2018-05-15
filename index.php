@@ -26,7 +26,7 @@
     <p>
       <input class="champs" type="text" name="Pseudo" id="pseudo" placeholder="Pseudo">
     </p>
-      <input class="btn" type="submit" value="Valider">
+      <input class="btn" type="submit" value="Jouer">
   </form>
 </body>
 
