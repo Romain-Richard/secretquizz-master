@@ -1,6 +1,6 @@
 <?php 
   require_once('database.php');
-
+  require('session.php');
   // $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_BASE); 
   // $sql = "SELECT * FROM bdd-test";
   // $result = mysqli_query($conn, $sql);
@@ -9,6 +9,25 @@
   // $Question= mysqli_real_escape_string($link, $_REQUEST['funfact']);
   // $question = "INSERT INTO Questions (funfact, reponse, personA, personB) VALUES ('$Question')";
   // mysqli_close($conn);
+
+  $link = mysqli_connect("localhost", "root", "root", "bdd-test");
+  $sql = "SELECT * FROM bdd-test";
+
+  if($link === false){
+    die("Impossible de se connecter" . mysqli_connect_error());
+  }
+
+  $first_name = mysqli_real_escape_string($link, $_REQUEST['first_name']);
+  $last_name = mysqli_real_escape_string($link, $_REQUEST['last_name']);
+  $email = mysqli_real_escape_string($link, $_REQUEST['email']);
+   
+  $sql = "INSERT INTO tabletest (first_name, last_name, email) VALUES ('$first_name', '$last_name', '$email')";
+  // $reponse =  $bdd->query('SELECT * FROM tabletest ORDER BY RAND() LIMIT 1');
+  //  while ($donnees = $reponse->fetch()) {
+  //       echo $donnees['first_name'] ;
+  //  }
+
+  mysqli_close($link);
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +43,7 @@
 <body>
   <h1>Bonjour 
     <?php
-      echo $_POST['Pseudo'] ;
+      echo $_SESSION['first_name'] = $_POST['first_name'] ;
     ?>
   </h1>
 
@@ -45,5 +64,4 @@
   </form>
 
 </body>
-
 </html>
